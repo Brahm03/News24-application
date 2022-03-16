@@ -31,7 +31,6 @@ class ServiceNewsApple {
     mybox!.clear();
     for (var item in model.articles!) {
       mybox!.add(item);
-      print(item.description);
     }
   }
 }

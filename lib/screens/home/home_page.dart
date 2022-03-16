@@ -111,11 +111,13 @@ class _HomePage extends State<HomePage> {
                                                 actions: [
                                                   TextButton(
                                                       onPressed: () {
-                                                      Hive.box('saved').add(
+                                                        Hive.box('saved').add(
                                                             data[current]
                                                                 .articles![i]);
                                                         debugPrint(
-                                                            Hive.box('saved').getAt(i).toString());
+                                                            Hive.box('saved')
+                                                                .getAt(i)
+                                                                .toString());
                                                       },
                                                       child: const Text(
                                                         'Add to saved',
@@ -132,9 +134,11 @@ class _HomePage extends State<HomePage> {
                                     onTap: () => Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => InfoPage(
-                                                all: [data[current]
-                                                    .articles![i], i]))),
+                                            builder: (context) =>
+                                                InfoPage(all: [
+                                                  data[current].articles![i],
+                                                  i
+                                                ]))),
                                     child: FadeInLeftBig(
                                       child: Hero(
                                         tag: i,

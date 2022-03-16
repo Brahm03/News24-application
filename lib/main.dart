@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
             title: 'News 24',
             theme: light,
             darkTheme: dark,
-            initialRoute: '/main',
+            initialRoute: '/sign_up',
             onGenerateRoute: _myroutes.onGenerateRoute,
           );
         });

@@ -18,4 +18,11 @@ class IconConst {
   static Image commets = Image.asset('assets/images/comments.png' ,height: 30,);
   static Image likes = Image.asset('assets/images/likes.png');
   static Image share = Image.asset('assets/images/share.png');
+  static  SvgPicture logo2 =  SvgPicture.asset('assets/icons/signlogo.svg');
+  static  SvgPicture apple =  SvgPicture.asset('assets/icons/applelogo.svg');
+  static  SvgPicture mail =  SvgPicture.asset('assets/icons/mail.svg');
+  static  SvgPicture facebook =  SvgPicture.asset('assets/icons/facebook.svg');
+  static  SvgPicture google =  SvgPicture.asset('assets/icons/google.svg');
+  static  SvgPicture twitter =  SvgPicture.asset('assets/icons/twitter.svg');
+
 }

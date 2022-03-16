@@ -27,7 +27,6 @@ class _SearchPageState extends State<SearchPage> {
 
   final Set<NewsModel> _temp = {};
 
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -56,21 +55,24 @@ class _SearchPageState extends State<SearchPage> {
                       height: getHeight(40),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20, right: 20),
-                        child: CupertinoSearchTextField(
-                          onChanged: (value) {
-                            _temp.clear();
-                            for (NewsModel item in snap.data!) {
-                              if (value.isEmpty) {
-                                setState(() {});
-                              } else if (item.articles![_value].title
-                                  .toString()
-                                  .toLowerCase()
-                                  .contains(value.toString().toLowerCase())) {
-                                _temp.add(item);
-                                setState(() {});
+                        child: FadeInRightBig(
+                          child: CupertinoSearchTextField(
+                            onChanged: (value) {
+                              _temp.clear();
+                              for (NewsModel item in snap.data!) {
+                                if (value.isEmpty) {
+                                  _temp.clear();
+                                  setState(() {});
+                                } else if (item.articles![_value].title
+                                    .toString()
+                                    .toLowerCase()
+                                    .contains(value.toString().toLowerCase())) {
+                                  _temp.add(item);
+                                  setState(() {});
+                                }
                               }
-                            }
-                          },
+                            },
+                          ),
                         ),
                       ),
                     ),
@@ -118,23 +120,16 @@ class _SearchPageState extends State<SearchPage> {
                             ),
                           ),
                           Expanded(
-                              flex: 9,
+                              flex: 10,
                               child: _temp.isNotEmpty
                                   ? ListView.builder(
                                       itemCount: _temp.length,
                                       itemBuilder: (_, __) {
-                                        return NewsContainer(index: __, newsModel: _temp.toList()[_value]);
+                                        return NewsContainer(
+                                            index: __,
+                                            newsModel: _temp.toList()[_value]);
                                       })
-                                  : ListView.builder(
-                                      itemCount:
-                                          snap.data![_value].articles!.length,
-                                      itemBuilder: (_, __) {
-                                        return FadeInDownBig(
-                                          child: NewsContainer(
-                                              index: __,
-                                              newsModel: snap.data![_value]),
-                                        );
-                                      }))
+                                  : const Center(child: Text('nothing searched yet'),))
                         ],
                       ),
                     ),

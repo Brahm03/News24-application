@@ -38,7 +38,7 @@ class NewsContainer extends StatelessWidget {
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 16),
                     overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
+                    maxLines: 4,
                   ),
                   SizedBox(
                     child: Text(
@@ -46,7 +46,7 @@ class NewsContainer extends StatelessWidget {
                           ? 'no author'
                           : "By ${newsModel.articles![index].author}",
                           overflow: TextOverflow.ellipsis,
-                          maxLines: 3,
+                          maxLines: 2,
                       style: const TextStyle(color: Colors.grey),
                     ),
                   ),
