@@ -46,8 +46,8 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
         child: TabBarView(controller: _controller, children: const[
                  HomePage(),
                  SearchPage(),
-                 Saved_Page(),
-                 SettingsPage()
+                 SavedPage(),
+                 SettingsPage(names: [],)
               ]),
       ),
       bottomNavigationBar: TabBar(

@@ -5,6 +5,7 @@ import 'package:prac1/core/constants/PM_const.dart';
 import 'package:prac1/core/constants/colorConst.dart';
 import 'package:prac1/core/constants/iconConst.dart';
 import 'package:prac1/core/constants/radiusconst.dart';
+import 'package:prac1/screens/settings/profile_page.dart';
 import 'package:prac1/widgets/Mytextformfield.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -48,6 +49,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             children: [
                               FadeInLeftBig(
                                 child: MyTextformField(
+                                    type: TextInputType.name,
                                     validator: (v) {
                                       if (v!.isEmpty) {
                                         return 'fill the gap';
@@ -58,9 +60,16 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                               FadeInRightBig(
                                 child: MyTextformField(
+                                    type: TextInputType.emailAddress,
                                     validator: (v) {
                                       if (v!.isEmpty) {
                                         return 'fill the gap';
+                                      } else if (!RegExp(
+                                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                          .hasMatch(v)) {
+                                        return "please include an '@' in the email adress '$v' is missing '@' ";
+                                      } else if (v == ' ') {
+                                        return 'has an error in your email address';
                                       }
                                     },
                                     controller: email,
@@ -68,9 +77,12 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                               FadeInLeftBig(
                                 child: MyTextformField(
+                                    type: TextInputType.multiline,
                                     validator: (v) {
                                       if (v!.isEmpty) {
                                         return 'fill the gap';
+                                      } else if (v.length < 8) {
+                                        return 'enter 8 letters';
                                       }
                                     },
                                     controller: password,
@@ -117,7 +129,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   height: 1,
                                   width: getWidth(80),
                                 ),
-                                Text('or sign in with'),
+                                const Text('or sign in with'),
                                 Container(
                                   color: ColorsConst.black,
                                   height: 1,

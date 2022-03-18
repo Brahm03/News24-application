@@ -41,6 +41,9 @@ class _HomePage extends State<HomePage> {
     ServiceNewsWallStreet.mybox as Box<Article>,
     ServiceNewsHeadLine.mybox as Box<Article>,
   ];
+
+  Box saved = Hive.box('saved');
+
   @override
   void initState() {
     super.initState();
@@ -111,13 +114,14 @@ class _HomePage extends State<HomePage> {
                                                 actions: [
                                                   TextButton(
                                                       onPressed: () {
-                                                        Hive.box('saved').add(
-                                                            data[current]
-                                                                .articles![i]);
+                                                        saved.add(data[current]
+                                                            .articles![i]);
                                                         debugPrint(
                                                             Hive.box('saved')
                                                                 .getAt(i)
+                                                                .title
                                                                 .toString());
+                                                        Navigator.pop(context);
                                                       },
                                                       child: const Text(
                                                         'Add to saved',

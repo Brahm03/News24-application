@@ -6,7 +6,8 @@ import 'package:prac1/core/components/SizConfig.dart';
 import 'package:prac1/core/constants/colorConst.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  final List names;
+  const SettingsPage({required this.names,Key? key}) : super(key: key);
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -58,35 +59,43 @@ class _SettingsPageState extends State<SettingsPage> {
                     return Padding(
                       padding: EdgeInsets.only(bottom: getHeight(20)),
                       child: FadeInLeftBig(
-                        child: ListTile(
-                          title: SizedBox(
-                            height: getHeight(40),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(_list[__]),
-                                const Spacer(),
-                                const Divider(
-                                  thickness: 1,
-                                  color: ColorsConst.black,
-                                )
-                              ],
+                        child: InkWell(
+                          onTap: () {
+                            __ == 0
+                                ? Navigator.pushNamed(context, '/profile',
+                                    arguments: [])
+                                : () {};
+                          },
+                          child: ListTile(
+                            title: SizedBox(
+                              height: getHeight(40),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(_list[__]),
+                                  const Spacer(),
+                                  const Divider(
+                                    thickness: 1,
+                                    color: ColorsConst.black,
+                                  )
+                                ],
+                              ),
                             ),
+                            trailing: __ == 4
+                                ? Switch(
+                                    value: _isDark,
+                                    onChanged: (v) {
+                                      _isDark = v;
+                                      if (_isDark) {
+                                        AdaptiveTheme.of(context).setDark();
+                                      } else {
+                                        AdaptiveTheme.of(context).setLight();
+                                      }
+                                      setState(() {});
+                                    })
+                                : const Icon(CupertinoIcons.right_chevron),
+                            leading: _icons[__],
                           ),
-                          trailing: __ == 4
-                              ? Switch(
-                                  value: _isDark,
-                                  onChanged: (v) {
-                                    _isDark = v;
-                                    if (_isDark) {
-                                      AdaptiveTheme.of(context).setDark();
-                                    } else {
-                                      AdaptiveTheme.of(context).setLight();
-                                    }
-                                    setState(() {});
-                                  })
-                              : const Icon(CupertinoIcons.right_chevron),
-                          leading: _icons[__],
                         ),
                       ),
                     );

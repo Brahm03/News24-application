@@ -22,7 +22,7 @@ void main() async {
   await ServiceNewsHeadLine.openBox();
   await ServiceNewsTestla.openBox();
   await ServiceNewsWallStreet.openBox();
-  final Box<NewsModel> savedbox = await Hive.openBox('saved');
+  await Hive.openBox('saved');
   runApp(MyApp());
 }
 
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
             title: 'News 24',
             theme: light,
             darkTheme: dark,
-            initialRoute: '/sign_up',
+            initialRoute: '/main',
             onGenerateRoute: _myroutes.onGenerateRoute,
           );
         });

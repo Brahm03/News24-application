@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:prac1/models/news_model.dart';
 
-class OfflineNews extends StatefulWidget {
-  List<Box<dynamic>> futures;
+class SavedNews extends StatefulWidget {
+  final Box<dynamic> saved;
   int current;
   int i;
-  OfflineNews(
-      {Key? key, required this.futures, required this.current, required this.i})
+  SavedNews(
+      {Key? key, required this.saved, required this.current, required this.i})
       : super(key: key);
 
   @override
-  State<OfflineNews> createState() => _OfflineNews();
+  State<SavedNews> createState() => _OfflineNews();
 }
 
-class _OfflineNews extends State<OfflineNews> {
+class _OfflineNews extends State<SavedNews> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,7 +30,8 @@ class _OfflineNews extends State<OfflineNews> {
             height: 130,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('assets/images/loadingGif.gif'), fit: BoxFit.cover),
+                  image: AssetImage('assets/images/loadingGif.gif'),
+                  fit: BoxFit.cover),
             ),
           ),
           Expanded(
@@ -42,16 +43,17 @@ class _OfflineNews extends State<OfflineNews> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.futures[widget.current]
+                    widget.saved
                         .getAt(widget.i)!
                         .title
                         .toString(),
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 3,
                   ),
                   Text(
-                    "By ${widget.futures[widget.current].getAt(widget.i)!.author.toString()}",
+                    "By ${widget.saved.getAt(widget.i)!.author.toString()}",
                     style: const TextStyle(color: Colors.grey),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
@@ -66,7 +68,7 @@ class _OfflineNews extends State<OfflineNews> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(widget.futures[widget.current]
+                              Text(widget.saved
                                   .getAt(widget.i)!
                                   .source!
                                   .name

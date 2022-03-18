@@ -24,5 +24,7 @@ class IconConst {
   static  SvgPicture facebook =  SvgPicture.asset('assets/icons/facebook.svg');
   static  SvgPicture google =  SvgPicture.asset('assets/icons/google.svg');
   static  SvgPicture twitter =  SvgPicture.asset('assets/icons/twitter.svg');
+  static  SvgPicture twittersmall =  SvgPicture.asset('assets/icons/twittersmall.svg');
+  static  SvgPicture facebooksmall =  SvgPicture.asset('assets/icons/facebooksmall.svg',);
 
 }
