@@ -8,6 +8,7 @@ import 'package:hive/hive.dart';
 import 'package:prac1/core/constants/colorConst.dart';
 import 'package:prac1/core/constants/fontweight.dart';
 import 'package:prac1/models/news_model.dart';
+import 'package:prac1/provider/add_provider.dart';
 import 'package:prac1/screens/info/info_page.dart';
 import 'package:prac1/service/apple_service.dart';
 import 'package:prac1/service/buisness.dart';
@@ -18,6 +19,7 @@ import 'package:prac1/widgets/appbar.dart';
 import 'package:prac1/widgets/catog.dart';
 import 'package:prac1/widgets/news.dart';
 import 'package:prac1/widgets/offlinenews.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -114,6 +116,7 @@ class _HomePage extends State<HomePage> {
                                                 actions: [
                                                   TextButton(
                                                       onPressed: () {
+                                                        context.read<AddProvider>().add();
                                                         saved.add(data[current]
                                                             .articles![i]);
                                                         debugPrint(
@@ -123,9 +126,9 @@ class _HomePage extends State<HomePage> {
                                                                 .toString());
                                                         Navigator.pop(context);
                                                       },
-                                                      child: const Text(
-                                                        'Add to saved',
-                                                        style: TextStyle(
+                                                      child: Text(
+                                                        context.watch<AddProvider>().added == false ? 'Add to saved' : 'Added',
+                                                        style: const TextStyle(
                                                             color: ColorsConst
                                                                 .black,
                                                             fontWeight:

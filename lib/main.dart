@@ -4,12 +4,14 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:prac1/core/components/theme_app.dart';
 import 'package:prac1/models/news_model.dart';
+import 'package:prac1/provider/add_provider.dart';
 import 'package:prac1/routes/MyRoutes.dart';
 import 'package:prac1/service/apple_service.dart';
 import 'package:prac1/service/buisness.dart';
 import 'package:prac1/service/headline.dart';
 import 'package:prac1/service/testla_service.dart';
 import 'package:prac1/service/wallstreetJournal.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -23,7 +25,11 @@ void main() async {
   await ServiceNewsTestla.openBox();
   await ServiceNewsWallStreet.openBox();
   await Hive.openBox('saved');
-  runApp(MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => AddProvider())
+  ],
+  child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

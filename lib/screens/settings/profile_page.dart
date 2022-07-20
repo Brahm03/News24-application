@@ -151,7 +151,7 @@ class _ProfilePageState extends State<ProfilePage> {
       final imagetemprory = File(image.path);
       setState(() => this.image = imagetemprory);
     } on PlatformException catch (e) {
-      print('Failed to pick image: $e');
+      debugPrint('Failed to pick image: $e');
     }
   }
 }
